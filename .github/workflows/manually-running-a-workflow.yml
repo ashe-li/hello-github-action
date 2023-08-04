@@ -3,11 +3,12 @@ on:
   workflow_dispatch:
     inputs:
       git_sha:
+        description: "build version (git_sha)"
         required: true
         type: string
-      tags:
-        description: "Test scenario tags"
-        required: false
+      doubleCheck:
+        description: "double check for manually run"
+        required: true
         type: boolean
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -31,4 +32,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          echo "Version: $git_sha"
           echo "test for input and std out: ${{ inputs.git_sha }} " >> $GITHUB_OUTPUT
+          if: github.event.inputs.E2ETest == true
+          echo "if: github.event.inputs.E2ETest == true" >> $GITHUB_OUTPUT
