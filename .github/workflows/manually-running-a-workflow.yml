@@ -1,5 +1,4 @@
 name: manually-running-a-workflow
-
 on:
   workflow_dispatch:
     inputs:
