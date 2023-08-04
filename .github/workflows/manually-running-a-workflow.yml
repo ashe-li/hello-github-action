@@ -30,9 +30,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
           echo "Version: $git_sha"
-          echo "test for input and std out: {inputs.git_sha} " >> $GITHUB_OUTPUT
+          echo Add other actions to build,
+          echo "test for input and std out: ${{inputs.git_sha}} " 
+          echo test, and deploy your project.
+          echo "test for input and std out: ${{inputs.git_sha}} " >> "$GITHUB_OUTPUT"
           if: github.event.inputs.doubleCheck == true
-          echo "if: github.event.inputs.doubleCheck == true" >> $GITHUB_OUTPUT
+          echo "if: github.event.inputs.doubleCheck == true" >> "$GITHUB_OUTPUT"
