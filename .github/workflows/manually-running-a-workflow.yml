@@ -32,8 +32,13 @@ jobs:
         run: |
           echo "Version: $git_sha"
           echo Add other actions to build,
-          echo "test for input and std out: ${{inputs.git_sha}} " 
+          echo "seems this is ok: ${{inputs.git_sha}} " 
           echo test, and deploy your project.
-          echo "test for input and std out: ${{inputs.git_sha}} " >> "$GITHUB_OUTPUT"
-          if: github.event.inputs.doubleCheck == true
+          echo "test for input and std out borken again ?: ${{inputs.git_sha}} " >> "$GITHUB_OUTPUT"
+
+      - name: test condition
+        if: github.event.inputs.doubleCheck == true
+        run: |
           echo "if: github.event.inputs.doubleCheck == true" >> "$GITHUB_OUTPUT"
+
+   
