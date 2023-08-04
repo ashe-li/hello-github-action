@@ -1,11 +1,14 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-
-# Controls when the workflow will run
+name: manually-running-a-workflow
 on:
-  push:
-    branches: [main, hotfix, develop]
+  workflow_dispatch:
+    inputs:
+      git_sha:
+        required: true
+        type: string
+      tags:
+        description: "Test scenario tags"
+        required: false
+        type: boolean
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,3 +31,4 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          echo "test for input and std out: ${{ inputs.git_sha }} " >> $GITHUB_OUTPUT
