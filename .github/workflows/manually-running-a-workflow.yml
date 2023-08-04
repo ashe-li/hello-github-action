@@ -28,8 +28,10 @@ jobs:
         env:
           ENV: staging-test-ENV
           NODE_ENV: staging-NODE_ENV
+          GIT_SHA: ${{inputs.git_sha}}
         run: |
           echo "seems this is ok git_sha: ${{inputs.git_sha}} " 
+          echo "time to log env var: $SHA " 
           echo "Add other actions to build,"
           echo test, and deploy your project.
           echo "name=image::$ENV/$NODE_ENV test for string concat" >> $GITHUB_OUTPUT
