@@ -33,6 +33,6 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo "Version: $git_sha"
-          echo "test for input and std out: ${{ inputs.git_sha }} " >> $GITHUB_OUTPUT
-          if: github.event.inputs.E2ETest == true
-          echo "if: github.event.inputs.E2ETest == true" >> $GITHUB_OUTPUT
+          echo "test for input and std out: {inputs.git_sha} " >> $GITHUB_OUTPUT
+          if: github.event.inputs.doubleCheck == true
+          echo "if: github.event.inputs.doubleCheck == true" >> $GITHUB_OUTPUT
