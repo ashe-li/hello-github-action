@@ -11,37 +11,6 @@ on:
         required: true
         type: boolean
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-name: manually-running-a-workflow
-on:
-  workflow_dispatch:
-    inputs:
-      git_sha:
-        description: "build version (git_sha)"
-        required: true
-        type: string
-      doubleCheck:
-        description: "double check for manually run"
-        required: true
-        type: boolean
-
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -64,74 +33,11 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-       env:
-          ENV: staging
-          NODE_ENV: staging
-          SITE_NAME: vocus
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-
-
-        run: |
-          echo "seems this is ok doubleCheck: ${{inputs.doubleCheck}} " 
-          echo "Add other actions to build,"
-          echo test, and deploy your project.
-          echo "name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-
-      - name: test condition true
-        if: github.event.inputs.doubleCheck == true
-        run: |
-          echo "if: github.event.inputs.doubleCheck == true" 
-          echo test condition true
-
-
-      - name: test condition false
-        if: github.event.inputs.doubleCheck == true
-        run: |
-          echo "if: github.event.inputs.doubleCheck == false" 
-          echo test condition false
-
-
-name: manually-running-a-workflow
-on:
-  workflow_dispatch:
-    inputs:
-      git_sha:
-        description: "build version (git_sha)"
-        required: true
-        type: string
-      doubleCheck:
-        description: "double check for manually run"
-        required: true
-        type: boolean
-
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-       env:
+        env:
           ENV: staging-test-ENV
           NODE_ENV: staging-NODE_ENV
         run: |
-          echo "seems this is ok doubleCheck: ${{inputs.doubleCheck}} " 
+          echo "seems this is ok git_sha: ${{inputs.git_sha}} " 
           echo "Add other actions to build,"
           echo test, and deploy your project.
           echo "name=image::$ENV/$NODE_ENV test for string concat" >> $GITHUB_OUTPUT
