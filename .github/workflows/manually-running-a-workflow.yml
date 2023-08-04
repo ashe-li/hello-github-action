@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       git_sha:
-        description: "build version (git_sha)"
+        description: "Please provide the version you would like to build (SHA-1)."
         required: true
         type: string
       doubleCheck:
-        description: "double check for manually run"
+        description: "If you're aware that submitting will trigger SHA-1 and replace the build, please check the box."
         required: true
         type: boolean
 
